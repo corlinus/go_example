@@ -33,6 +33,7 @@ func extractOptions(field reflect.StructField) (options form_helpers.MyFieldOpti
          Type:     tag.Get("type"),
          Name:     tag.Get("field"),
          Label:    tag.Get("name"),
+         Ext:      tag.Get(tag.Get("type")),
          Required: tag.Get("required") == "true",
          Default:  tag.Get("default") == "true",
      }
