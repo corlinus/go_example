@@ -24,7 +24,7 @@ type MyForm struct {
 }
 
 func htmlLayout(str string) (html_str string) {
-    return fmt.Sprintf("<html><body>\n<form action='/create' method='POST'>\n%s\n<input type='submit' value='Submit'>\n</form>\n</body></html>", str)
+    return fmt.Sprintf("<html><body>\n<form action='/create' method='post' enctype='multipart/form-data'>\n%s\n<input type='submit' value='Submit'>\n</form>\n</body></html>", str)
 }
 
 func extractOptions(field reflect.StructField) (options form_helpers.MyFieldOptions) {
@@ -49,7 +49,7 @@ func FormCreate(formData *MyForm) (form string, err error) {
 
      for i := 0; i < fdValue.NumField(); i++ {
          field := fdValue.Field(i)
-         value := fmt.Sprintf("%s", field.Interface()) // FIXME
+         value := fmt.Sprintf("%v", field.Interface())
          options := extractOptions(fdType.Field(i))
          fields = append(fields, form_helpers.FieldCreate(value, options))
      }
