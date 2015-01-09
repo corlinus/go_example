@@ -70,7 +70,7 @@ func selectTag(name, ext string) (field_html string) {
 
         options += contentTag("option", array1[0], attrs)
     }
-    return contentTag("select", options, tag_attrs{})
+    return contentTag("select", options, tag_attrs{"name" : name})
 }
 
 func inputTag(input_type, name, value, ext string) (field_html string) {
